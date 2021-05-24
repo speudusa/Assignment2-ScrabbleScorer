@@ -20,7 +20,29 @@ I started with while block and if/else blocks
 create a working program without any methods
 
 recommend starting with that then reconfiguring into methods
+QUESTION:  might have that as the starter code??? or would that be confusing???
 
-might have that as the starter code???
+Basically rearranged code blocks
+- SCORES: each score type if block was turned into its own method
+    - parameter: userWord
+    - ScrabbleScorer - Has 3 main loops/parts.
+        - 1. loops to convert KVP from old dict to new dict
+        - 2. loop to run through the word with the new dict
+        - 3. use loop and new dict to calculate total 
+    -SimpleScorer - once loop to update a total
+    -Bonus Vowels - an if/else to update a total
+- SCORE SELECTION: while loop/if blocks updated into a method
+    - parameters: userInput string number - each number = a method
+    - each if block corresponds to score method - so call methods here 
+    - this is where user input comes in, as well as correcting for case issues (ToLower or ToUpper)
+        - passed to scoring methods
+    - This is where the while loop runs or terminates based on user input
+- WELCOME PROGRAM: introduce app, take score selctions, call scoreSelection from here
+    - parameterless
+    - CWs print directions
+    - CRL holds user input
+    - input passed to scoreSelection
 
-or would that be confusing???
+
+
+Test bewteen all steps.  test test test!
