@@ -11,4 +11,7 @@
         * make branches when trying to make methods.  Do ONE for EACH method.  <-- yes!
 
     REBUILT and WORKING! :) :D XD
-        now to push it up to GH...  
+        now to push it up to GH...
+
+nSK-Method BRANCH UPDATES
+ - 

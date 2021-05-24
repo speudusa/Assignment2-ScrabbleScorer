@@ -17,27 +17,46 @@ namespace ScrabbleScorer
             {10, "q, z" }
         };
 
-        static void Main(string[] args)
+
+        public static int NewDictionaryScorer(string word, Dictionary<char,int>) //UPDATE DICTIONARY
         {
-            //this is my switch for the while loop - until STOP is given, will keep taking user words
-            bool done = false;  //part of While/Repeat system
+           
 
-            //UPDATE DICTIONARY
-
-            Dictionary<char, int> newScoreKeeper = new Dictionary<char, int>();
-
-            //loop through old dictionary
-            foreach(KeyValuePair<int, string> oSK in oldScoreKeeper)
-            {
-                //split old value string into single letter strings
+            foreach (KeyValuePair<int, string> oSK in oldScoreKeeper)
+            { 
                 string[] strChar = oSK.Value.Split(", ");
                 foreach (string str in strChar)
                 {
-                    //convert to chars AND set as keys
                     char ch = Convert.ToChar(str);
                     newScoreKeeper.Add(ch, oSK.Key);
                 }
             }
+            
+            List<int> letterScore = new List<int>();
+            foreach (KeyValuePair<char, int> score in newScoreKeeper)
+            {
+                foreach (char ch in word)
+                {
+                    if (score.Key == ch)
+                    {
+                        letterScore.Add(score.Value);
+                    }
+                }
+            }
+
+            int totalScore = 0;
+
+            foreach (int i in letterScore)
+            {
+                return totalScore += i;
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            bool done = false;
+
+
 
 
             //SELECT HOW TO SCORE
@@ -54,58 +73,29 @@ namespace ScrabbleScorer
 
             while (done == false)
             {
-                //user word comes in right here
                 string userWord = Console.ReadLine();
 
-                //check our exit point
                 if (userWord == "STOP")
                 {
                     Console.WriteLine("Thank you for playing");
-                    //if STOP, update while condition and end loop
                     done = true;
                 }
-                //everything else is possible if NOT STOP
                 else
                 {
-                    //remove case issues
                     string lowerWord = userWord.ToLower();
 
             //1 - SCRABBLE SCORING
-                //uses oldScoreKeeper via newScoreKeeper
                     if(inputPoints == "1")
                     {
-                        //list to hold each int value associated with ch
-                            //could also use array, but would need to set length based on length of word (extra code)
-                        List<int> letterScore = new List<int>();
-                        foreach (KeyValuePair<char, int> score in newScoreKeeper)
-                        {
-                            foreach (char ch in lowerWord)
-                            {
-                                if (score.Key == ch)
-                                {
-                                    //this ONLY puts each int into the list - no math
-                                    letterScore.Add(score.Value);
-                                }
-                            }
-                        }
+                        Dictionary<char, int> newScoreKeeper = new Dictionary<char, int>();
+                        //static method - must be held in variable
+                        //returns score
+                        int totalScore = NewDictionaryScorer(lowerWord);
 
-                        //UPDATE score total by adding each int value within the list
-                   
-                        int totalScore = 0;
-
-                        foreach(int i in letterScore)
-                        {
-                            totalScore += i;
-                        }
-
-                        
                         Console.ForegroundColor = ConsoleColor.DarkCyan;  //color change for my testing purposes
-                        //print word and score - referring back to original word user provided
-                        //this specific formatting is optional
+                        //passing score here
                         Console.WriteLine($"Your word: {userWord} is worth {totalScore}");  
-                        Console.ResetColor(); //for my testing
-
-                        //ask question once again here based on while loop
+                        Console.ResetColor(); 
                         Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
 
                     }//IF
