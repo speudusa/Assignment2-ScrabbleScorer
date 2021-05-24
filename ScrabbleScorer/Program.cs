@@ -15,7 +15,8 @@ namespace ScrabbleScorer
             {5, "k" },
             {8, "j, x" },
             {10, "q, z" }
-        };
+        }; 
+
 
         static void Main(string[] args)
         {
