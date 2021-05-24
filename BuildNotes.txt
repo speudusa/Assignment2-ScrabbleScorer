@@ -11,4 +11,12 @@
         * make branches when trying to make methods.  Do ONE for EACH method.  <-- yes!
 
     REBUILT and WORKING! :) :D XD
-        now to push it up to GH...  
+        now to push it up to GH...
+
+    all score options are now methods and WORK WORK WORK! :D
+
+    Okay, so this is where it broke last time...
+
+    * going to try and create the user options into a method.  yup.
+
+    * it works! :)
