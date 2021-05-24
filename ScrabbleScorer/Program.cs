@@ -17,13 +17,13 @@ namespace ScrabbleScorer
             {10, "q, z" }
         };
 
-
-        public static int NewDictionaryScorer(string word, Dictionary<char,int>) //UPDATE DICTIONARY
-        {
-           
+        //1 - SCRABBLE SCORE
+        public static int ScrabbleScorer(string word)
+        { 
+            Dictionary<char, int> newScoreKeeper = new Dictionary<char, int>();
 
             foreach (KeyValuePair<int, string> oSK in oldScoreKeeper)
-            { 
+            {
                 string[] strChar = oSK.Value.Split(", ");
                 foreach (string str in strChar)
                 {
@@ -31,7 +31,7 @@ namespace ScrabbleScorer
                     newScoreKeeper.Add(ch, oSK.Key);
                 }
             }
-            
+
             List<int> letterScore = new List<int>();
             foreach (KeyValuePair<char, int> score in newScoreKeeper)
             {
@@ -44,35 +44,69 @@ namespace ScrabbleScorer
                 }
             }
 
+
             int totalScore = 0;
 
             foreach (int i in letterScore)
             {
-                return totalScore += i;
+                totalScore += i;
             }
+
+            return totalScore;
+        }
+
+        public static int SimpleScorer(string word)
+        {
+            int totalScore = 0;
+            foreach (char ch in word)
+            {
+                totalScore += 1;
+            }
+
+            return totalScore;
+        }
+
+        public static int BonusVowels(string word)
+        {
+            int totalScore = 0;
+            foreach (char ch in word)
+            {
+                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+                {
+                    totalScore += 3;
+                }
+                else
+                {
+                    totalScore += 1;
+                }
+            }
+
+            return totalScore;
         }
 
         static void Main(string[] args)
         {
-            bool done = false;
+            
+            bool done = false;  
+
+            
 
 
-
-
-            //SELECT HOW TO SCORE
+            //SELECT HOW TO SCORE - 
             Console.WriteLine("How do you wish to score your scrabble words?" +
                 "\n 1: Scrabble - the traditional score method" +
                 "\n 2: Simple Score - each letter is worth 1 point " +
                 "\n 3: Bonus Vowles - vowels are worth 3 points, consonants 1 point each");
 
-            string inputPoints = Console.ReadLine();   //user types which one -- these are strings
+            string inputPoints = Console.ReadLine();   
 
-            //directions, including how to stop
             Console.WriteLine("Please type in your word followed by enter.  If you wish to end your session type: STOP");
 
 
+        //PROGRAM LOOP
             while (done == false)
             {
+                //user word comes in right here
                 string userWord = Console.ReadLine();
 
                 if (userWord == "STOP")
@@ -87,28 +121,21 @@ namespace ScrabbleScorer
             //1 - SCRABBLE SCORING
                     if(inputPoints == "1")
                     {
-                        Dictionary<char, int> newScoreKeeper = new Dictionary<char, int>();
-                        //static method - must be held in variable
-                        //returns score
-                        int totalScore = NewDictionaryScorer(lowerWord);
+                        int finalScore = ScrabbleScorer(lowerWord);
 
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;  //color change for my testing purposes
-                        //passing score here
-                        Console.WriteLine($"Your word: {userWord} is worth {totalScore}");  
-                        Console.ResetColor(); 
+                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        Console.WriteLine($"Your word: {userWord} is worth {finalScore}");
+                        Console.ResetColor();
                         Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
 
                     }//IF
 
                     else if(inputPoints == "2")
                     {
-                        int totalScore = 0;
-                        foreach(char ch in lowerWord)
-                        {
-                            totalScore += 1;
-                        }
+                        int finalScore = SimpleScorer(lowerWord);
+                        
                         Console.ForegroundColor = ConsoleColor.DarkCyan;  
-                        Console.WriteLine($"Your word: {userWord} is worth {totalScore}");
+                        Console.WriteLine($"Your word: {userWord} is worth {finalScore}");
                         Console.ResetColor();
                         Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
 
@@ -116,20 +143,10 @@ namespace ScrabbleScorer
 
                     else if(inputPoints == "3")
                     {
-                        int totalScore = 0;
-                        foreach(char ch in lowerWord)
-                        {
-                            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
-                            {
-                                totalScore += 3;
-                            }
-                            else
-                            {
-                                totalScore += 1;
-                            }
-                        }
+                       int finalScore = BonusVowels(lowerWord);
+
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
-                        Console.WriteLine($"Your word: {userWord} is worth {totalScore}");
+                        Console.WriteLine($"Your word: {userWord} is worth {finalScore}");
                         Console.ResetColor();
                         Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
 
