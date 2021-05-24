@@ -1,22 +1,26 @@
 ﻿5/24 ------
 
-    BROKEN: updated VS (doh) and now my code from Friday won't work.
-        * BUT, this is okay.  Now I have the same version of VS they will have
-            AND the same NuGET packages as they do (none)
-        This will be a more legit test for the over all assignment as it will match their specs at this point
+5 methods all together
 
-    PLANS:  Rebuild code from Friday.
+each method is connected to each other some how
 
-    MAIN BRANCH -- will be one long loop, no methods yet.
-        * make branches when trying to make methods.  Do ONE for EACH method.  <-- yes!
+WelcomeProgram()
+    >> ScoreProgram(string option)
+        >> 1. ScrabbleScorer(string word) || 2. SimpleScorer(string word) || 3. BonusVowels(string word)
 
-    REBUILT and WORKING! :) :D XD
-        now to push it up to GH...
 
-    all score options are now methods and WORK WORK WORK! :D
+All methods are static, built outside the Main method, but within the same Program class
 
-    Okay, so this is where it broke last time...
+All methods are void
 
-    * going to try and create the user options into a method.  yup.
+----------------------
+Build notes
 
-    * it works! :)
+I started with while block and if/else blocks
+create a working program without any methods
+
+recommend starting with that then reconfiguring into methods
+
+might have that as the starter code???
+
+or would that be confusing???

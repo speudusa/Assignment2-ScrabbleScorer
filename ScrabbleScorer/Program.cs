@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ScrabbleScorer  //with notes
+namespace ScrabbleScorer
 {
     class Program
     {
-        //ORIGINAL DICTIONARY OBJECT
         public static Dictionary<int, string> oldScoreKeeper = new Dictionary<int, string>()
         {
             {1, "a, e, i, o, u, l, n, r, s, t"},
@@ -17,9 +16,6 @@ namespace ScrabbleScorer  //with notes
             {10, "q, z" }
         }; 
 
-
- //SCRABBLE SCORE: pulled directly from the if block
-            //calculated final score using dictionary objects 
         public static void ScrabbleScorer(string word)
         { 
             Dictionary<char, int> newScoreKeeper = new Dictionary<char, int>();
@@ -56,7 +52,6 @@ namespace ScrabbleScorer  //with notes
             Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
         }
 
-//SIMPLE SCORE - pulled from if block
         public static void SimpleScorer(string word)
         {
             int totalScore = 0;
@@ -69,7 +64,6 @@ namespace ScrabbleScorer  //with notes
             Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
         }
 
-//BONUS VOWELS - pulled from if block
         public static void BonusVowels(string word)
         {
             int totalScore = 0;
@@ -86,11 +80,8 @@ namespace ScrabbleScorer  //with notes
             }
             Console.WriteLine($"Your word: {word} is worth {totalScore}");
             Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
-
         }
 
-//START PROGRAM
-    //Calls score program from within
         public static void WelcomeToProgram()
         {
             Console.WriteLine("How do you wish to score your scrabble words?" +
@@ -102,18 +93,13 @@ namespace ScrabbleScorer  //with notes
             Console.WriteLine("Please type in your word followed by enter.  If you wish to end your session type: STOP");
 
             ScoreProgram(inputPoints);
-
         }
 
-//SCORE PROGRAMS
-    //called by WTP - which activates loop
-    //userInput activates the score methods, and will terminate the while loop
         public static void ScoreProgram(string option)
         {
             bool done = false;
             while (done == false)
             {
-                //user word comes in right here
                 string userWord = Console.ReadLine();
 
                 if (userWord == "STOP")
