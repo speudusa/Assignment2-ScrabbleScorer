@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ScrabbleScorer
+namespace ScrabbleScorer  //with notes
 {
     class Program
     {
@@ -17,8 +17,9 @@ namespace ScrabbleScorer
             {10, "q, z" }
         };
 
-        //1 - SCRABBLE SCORE
-        public static int ScrabbleScorer(string word)
+ //SCRABBLE SCORE: pulled directly from the if block
+            //calculated final score using dictionary objects 
+        public static void ScrabbleScorer(string word)
         { 
             Dictionary<char, int> newScoreKeeper = new Dictionary<char, int>();
 
@@ -44,18 +45,18 @@ namespace ScrabbleScorer
                 }
             }
 
-
             int totalScore = 0;
 
             foreach (int i in letterScore)
             {
                 totalScore += i;
             }
-
-            return totalScore;
+            Console.WriteLine($"Your word: {word} is worth {totalScore}");
+            Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
         }
 
-        public static int SimpleScorer(string word)
+//SIMPLE SCORE - pulled from if block
+        public static void SimpleScorer(string word)
         {
             int totalScore = 0;
             foreach (char ch in word)
@@ -63,10 +64,12 @@ namespace ScrabbleScorer
                 totalScore += 1;
             }
 
-            return totalScore;
+            Console.WriteLine($"Your word: {word} is worth {totalScore}");
+            Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
         }
 
-        public static int BonusVowels(string word)
+//BONUS VOWELS - pulled from if block
+        public static void BonusVowels(string word)
         {
             int totalScore = 0;
             foreach (char ch in word)
@@ -80,30 +83,33 @@ namespace ScrabbleScorer
                     totalScore += 1;
                 }
             }
+            Console.WriteLine($"Your word: {word} is worth {totalScore}");
+            Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
 
-            return totalScore;
         }
 
-        static void Main(string[] args)
+//START PROGRAM
+    //Calls score program from within
+        public static void WelcomeToProgram()
         {
-            
-            bool done = false;  
-
-            
-
-
-            //SELECT HOW TO SCORE - 
             Console.WriteLine("How do you wish to score your scrabble words?" +
                 "\n 1: Scrabble - the traditional score method" +
                 "\n 2: Simple Score - each letter is worth 1 point " +
                 "\n 3: Bonus Vowles - vowels are worth 3 points, consonants 1 point each");
 
-            string inputPoints = Console.ReadLine();   
-
+            string inputPoints = Console.ReadLine();
             Console.WriteLine("Please type in your word followed by enter.  If you wish to end your session type: STOP");
 
+            ScoreProgram(inputPoints);
 
-        //PROGRAM LOOP
+        }
+
+//SCORE PROGRAMS
+    //called by WTP - which activates loop
+    //userInput activates the score methods, and will terminate the while loop
+        public static void ScoreProgram(string option)
+        {
+            bool done = false;
             while (done == false)
             {
                 //user word comes in right here
@@ -118,45 +124,29 @@ namespace ScrabbleScorer
                 {
                     string lowerWord = userWord.ToLower();
 
-            //1 - SCRABBLE SCORING
-                    if(inputPoints == "1")
+                    if (option == "1")
                     {
-                        int finalScore = ScrabbleScorer(lowerWord);
+                        ScrabbleScorer(lowerWord);
+                    }
 
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
-                        Console.WriteLine($"Your word: {userWord} is worth {finalScore}");
-                        Console.ResetColor();
-                        Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
-
-                    }//IF
-
-                    else if(inputPoints == "2")
+                    else if (option == "2")
                     {
-                        int finalScore = SimpleScorer(lowerWord);
-                        
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;  
-                        Console.WriteLine($"Your word: {userWord} is worth {finalScore}");
-                        Console.ResetColor();
-                        Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
+                        SimpleScorer(lowerWord);
+                    }
 
-                    }//ELSE IF # 1
-
-                    else if(inputPoints == "3")
+                    else if (option == "3")
                     {
-                       int finalScore = BonusVowels(lowerWord);
-
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
-                        Console.WriteLine($"Your word: {userWord} is worth {finalScore}");
-                        Console.ResetColor();
-                        Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
-
-                    }//ELSE IF #2
+                        BonusVowels(lowerWord);
+                    }
 
                 }
-                
+
             }
+        }
 
-
-        } //MAIN
-    } //PROGRAM
-}// NAMESPACE
+        static void Main(string[] args)
+        { 
+           WelcomeToProgram();
+        } 
+    } 
+}
