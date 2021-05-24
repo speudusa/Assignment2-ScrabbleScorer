@@ -1,14 +1,10 @@
 ﻿5/24 ------
 
-    BROKEN: updated VS (doh) and now my code from Friday won't work.
-        * BUT, this is okay.  Now I have the same version of VS they will have
-            AND the same NuGET packages as they do (none)
-        This will be a more legit test for the over all assignment as it will match their specs at this point
+Working with while loop and if blocks
 
-    PLANS:  Rebuild code from Friday.
+For directions:
+    - recommend taking this route if not sure where to start
+    - once this is working, it is easy to convert each block into its own method (see methods build notes)
 
-    MAIN BRANCH -- will be one long loop, no methods yet.
-        * make branches when trying to make methods.  Do ONE for EACH method.  <-- yes!
-
-    REBUILT and WORKING! :) :D XD
-        now to push it up to GH...  
+Colors added for testing
+I left my notes in to help with the transition from C# to JS
