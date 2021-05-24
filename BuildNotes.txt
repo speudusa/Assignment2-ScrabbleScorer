@@ -1,0 +1,14 @@
+﻿5/24 ------
+
+    BROKEN: updated VS (doh) and now my code from Friday won't work.
+        * BUT, this is okay.  Now I have the same version of VS they will have
+            AND the same NuGET packages as they do (none)
+        This will be a more legit test for the over all assignment as it will match their specs at this point
+
+    PLANS:  Rebuild code from Friday.
+
+    MAIN BRANCH -- will be one long loop, no methods yet.
+        * make branches when trying to make methods.  Do ONE for EACH method.  <-- yes!
+
+    REBUILT and WORKING! :) :D XD
+        now to push it up to GH...  
