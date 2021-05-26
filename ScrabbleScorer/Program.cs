@@ -88,13 +88,15 @@ namespace ScrabbleScorer
                 "\n 2: Simple Score - each letter is worth 1 point " +
                 "\n 3: Bonus Vowles - vowels are worth 3 points, consonants 1 point each");
 
-            string inputPoints = Console.ReadLine();
+            string inputOption = Console.ReadLine();
+            int inputPoints = int.Parse(inputOption);
+
             Console.WriteLine("Please type in your word followed by enter.  If you wish to end your session type: STOP");
 
             ScoreProgram(inputPoints);
         }
 
-        public static void ScoreProgram(string option)
+        public static void ScoreProgram(int option)
         {
             bool done = false;
             while (done == false)
@@ -110,17 +112,17 @@ namespace ScrabbleScorer
                 {
                     string lowerWord = userWord.ToLower();
 
-                    if (option == "1")
+                    if (option == 1)
                     {
                         ScrabbleScorer(lowerWord);
                     }
 
-                    else if (option == "2")
+                    else if (option == 2)
                     {
                         SimpleScorer(lowerWord);
                     }
 
-                    else if (option == "3")
+                    else if (option == 3)
                     {
                         BonusVowels(lowerWord);
                     }
@@ -133,6 +135,7 @@ namespace ScrabbleScorer
         static void Main(string[] args)
         { 
            WelcomeToProgram();
+          
         } 
     } 
 }
