@@ -16,13 +16,13 @@ namespace ScrabbleScorer
             {10, "q, z" }
         };
 
-        public static Dictionary<char, int> UpdateDictionary(string word)
+        public static Dictionary<char, int> UpdateDictionary()
         {
             Dictionary<char, int> newDict = new Dictionary<char, int>();
 
             foreach (KeyValuePair<int, string> oSK in oldScoreKeeper)
             {
-                string[] strChar = oSK.Value.Split(", ");
+                string[] strChar = oSK.Value.Split(", ");  //deliminator is a string
                 foreach (string str in strChar)
                 {
                     char ch = Convert.ToChar(str);
@@ -35,26 +35,20 @@ namespace ScrabbleScorer
 
         public static void ScrabbleScorer(string word)
         {
-            Dictionary<char, int> newScoreKeeper = UpdateDictionary(word);  //using my new dictionary thanks to this method
+            Dictionary<char, int> newScoreKeeper = UpdateDictionary();  //using my new dictionary thanks to this method
 
-            List<int> letterScore = new List<int>();
+            int totalScore = 0;  
+
             foreach (KeyValuePair<char, int> score in newScoreKeeper)
             {
                 foreach (char ch in word)
                 {
                     if (score.Key == ch)
                     {
-                        letterScore.Add(score.Value);
+                        totalScore += score.Value;
                     }
                 }
             }
-            int totalScore = 0;
-
-            foreach (int i in letterScore)
-            {
-                totalScore += i;
-            }
-
 
             Console.WriteLine($"Your word: {word} is worth {totalScore}");
             Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
