@@ -14,11 +14,11 @@ namespace ScrabbleScorer
             {5, "k" },
             {8, "j, x" },
             {10, "q, z" }
-        }; 
+        };
 
-        public static void ScrabbleScorer(string word)
-        { 
-            Dictionary<char, int> newScoreKeeper = new Dictionary<char, int>();
+        public static Dictionary<char, int> UpdateDictionary(string word)
+        {
+            Dictionary<char, int> newDict = new Dictionary<char, int>();
 
             foreach (KeyValuePair<int, string> oSK in oldScoreKeeper)
             {
@@ -26,9 +26,16 @@ namespace ScrabbleScorer
                 foreach (string str in strChar)
                 {
                     char ch = Convert.ToChar(str);
-                    newScoreKeeper.Add(ch, oSK.Key);
+                    newDict.Add(ch, oSK.Key);
                 }
             }
+            return newDict;
+        }
+
+
+        public static void ScrabbleScorer(string word)
+        {
+            Dictionary<char, int> newScoreKeeper = UpdateDictionary(word);  //using my new dictionary thanks to this method
 
             List<int> letterScore = new List<int>();
             foreach (KeyValuePair<char, int> score in newScoreKeeper)
@@ -41,24 +48,22 @@ namespace ScrabbleScorer
                     }
                 }
             }
-
             int totalScore = 0;
 
             foreach (int i in letterScore)
             {
                 totalScore += i;
             }
+
+
             Console.WriteLine($"Your word: {word} is worth {totalScore}");
             Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
         }
 
+
         public static void SimpleScorer(string word)
         {
-            int totalScore = 0;
-            foreach (char ch in word)
-            {
-                totalScore += 1;
-            }
+            int totalScore = word.Length;
 
             Console.WriteLine($"Your word: {word} is worth {totalScore}");
             Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
