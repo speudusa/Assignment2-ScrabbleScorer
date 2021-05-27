@@ -16,7 +16,7 @@ namespace ScrabbleScorer
             {10, "q, z" }
         };
 
-        public static Dictionary<char, int> UpdateDictionary()
+        public static Dictionary<char, int> Transform()
         {
             Dictionary<char, int> newDict = new Dictionary<char, int>();
 
@@ -35,7 +35,7 @@ namespace ScrabbleScorer
 
         public static void ScrabbleScorer(string word)
         {
-            Dictionary<char, int> newScoreKeeper = UpdateDictionary();  //using my new dictionary thanks to this method
+            Dictionary<char, int> newScoreKeeper = Transform();  //using my new dictionary thanks to this method
 
             int totalScore = 0;  
 
@@ -81,36 +81,38 @@ namespace ScrabbleScorer
             Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
         }
 
-        public static void WelcomeToProgram()
+        public static void InitialPrompt()
         {
-            Console.WriteLine("How do you wish to score your scrabble words?" +
+            Console.WriteLine($"How do you wish to score your scrabble words?" +
                 "\n 1: Scrabble - the traditional score method" +
                 "\n 2: Simple Score - each letter is worth 1 point " +
-                "\n 3: Bonus Vowles - vowels are worth 3 points, consonants 1 point each");
+                "\n 3: Bonus Vowels - vowels are worth 3 points, consonants 1 point each");
 
             string inputOption = Console.ReadLine();
             int inputPoints = int.Parse(inputOption);
 
             Console.WriteLine("Please type in your word followed by enter.  If you wish to end your session type: STOP");
 
-            ScoreProgram(inputPoints);
+            SelectScore(inputPoints);
         }
 
-        public static void ScoreProgram(int option)
+//ScoringAlgorithm opbject?
+        public static void SelectScore(int option)
         {
             bool done = false;
+
             while (done == false)
             {
                 string userWord = Console.ReadLine();
+                string lowerWord = userWord.ToLower();
 
-                if (userWord == "STOP")
+                if (lowerWord == "stop")
                 {
-                    Console.WriteLine("Thank you for playing");
+                    Console.WriteLine("Thank you for playing"); //for my testing
                     done = true;
                 }
                 else
                 {
-                    string lowerWord = userWord.ToLower();
 
                     if (option == 1)
                     {
@@ -132,9 +134,14 @@ namespace ScrabbleScorer
             }
         }
 
+        public static void RunProgram()
+        {
+            InitialPrompt();
+        }
+
         static void Main(string[] args)
         { 
-           WelcomeToProgram();
+           RunProgram();
           
         } 
     } 
