@@ -81,7 +81,8 @@ namespace ScrabbleScorer
             Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
         }
 
-        public static void InitialPrompt()
+        //was InitialPrompt()
+        public static void StartProgram()
         {
             Console.WriteLine($"How do you wish to score your scrabble words?" +
                 "\n 1: Scrabble - the traditional score method" +
@@ -93,11 +94,11 @@ namespace ScrabbleScorer
 
             Console.WriteLine("Please type in your word followed by enter.  If you wish to end your session type: STOP");
 
-            SelectScore(inputPoints);
+            SelectOption(inputPoints);
         }
 
-//ScoringAlgorithm opbject?
-        public static void SelectScore(int option)
+
+        public static void SelectOption(int option)
         {
             bool done = false;
 
@@ -134,15 +135,28 @@ namespace ScrabbleScorer
             }
         }
 
-        public static void RunProgram()
-        {
-            InitialPrompt();
-        }
+
+        //public static void RunProgram()
+        //{
+        //    InitialPrompt();
+        //}
+
+
 
         static void Main(string[] args)
-        { 
-           RunProgram();
-          
+        {
+            Dictionary<char, int> testDictionary = Transform();
+
+            foreach(KeyValuePair<char,int> test in testDictionary)
+            {
+                Console.WriteLine($"{test.Key} + {test.Value}");
+                    }
+
+            Console.WriteLine(testDictionary['a']);
+            Console.WriteLine(testDictionary['j']);
+
+            StartProgram();
+          // RunProgram();
         } 
     } 
 }
