@@ -5,27 +5,30 @@ namespace ScrabbleScorer
 {
     class Program
     {
-        public static Dictionary<int, string> oldScoreKeeper = new Dictionary<int, string>()
+        public static Dictionary<int, string> oldPointStructure = new Dictionary<int, string>()
         {
-            {1, "a, e, i, o, u, l, n, r, s, t"},
-            {2, "d, g"},
-            {3, "b, c, m, p" },
-            {4, "f, h, v, w, y" },
-            {5, "k" },
-            {8, "j, x" },
-            {10, "q, z" }
+            {1, "A, E, I, O, U, L, N, R, S, T"},
+            {2, "D, G"},
+            {3, "B, C, M, P" },
+            {4, "F, H, V, W, Y" },
+            {5, "K" },
+            {8, "J, X" },
+            {10, "Q, Z" }
         };
 
+
+
+//TRANSFORM
         public static Dictionary<char, int> Transform()
         {
             Dictionary<char, int> newDict = new Dictionary<char, int>();
 
-            foreach (KeyValuePair<int, string> oSK in oldScoreKeeper)
+            foreach (KeyValuePair<int, string> oSK in oldPointStructure)
             {
-                string[] strChar = oSK.Value.Split(", ");  //deliminator is a string
+                string[] strChar = oSK.Value.Split(", ");  
                 foreach (string str in strChar)
                 {
-                    char ch = Convert.ToChar(str);
+                    char ch = Convert.ToChar(str.ToLower());
                     newDict.Add(ch, oSK.Key);
                 }
             }
@@ -33,13 +36,16 @@ namespace ScrabbleScorer
         }
 
 
-        public static void ScrabbleScorer(string word)
+
+//SCORE OPTIONS
+    //1
+        public static void ScrabbleScorer(string word, string userWord)
         {
-            Dictionary<char, int> newScoreKeeper = Transform();  //using my new dictionary thanks to this method
+            Dictionary<char, int> newPointStructure = Transform();  //using my new dictionary thanks to this method
 
             int totalScore = 0;  
 
-            foreach (KeyValuePair<char, int> score in newScoreKeeper)
+            foreach (KeyValuePair<char, int> score in newPointStructure)
             {
                 foreach (char ch in word)
                 {
@@ -50,22 +56,22 @@ namespace ScrabbleScorer
                 }
             }
 
-            Console.WriteLine($"Your word: {word} is worth {totalScore}");
-            Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
+            Console.WriteLine($"Your score for \"{userWord}\": {totalScore}");
         }
 
-
-        public static void SimpleScorer(string word)
+    //2
+        public static void SimpleScorer(string word, string userWord)
         {
             int totalScore = word.Length;
 
-            Console.WriteLine($"Your word: {word} is worth {totalScore}");
-            Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
+            Console.WriteLine($"Your score for \"{userWord}\": {totalScore}");
         }
 
-        public static void BonusVowels(string word)
+    //3
+        public static void BonusVowels(string word, string userWord)
         {
             int totalScore = 0;
+
             foreach (char ch in word)
             {
                 if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
@@ -77,86 +83,71 @@ namespace ScrabbleScorer
                     totalScore += 1;
                 }
             }
-            Console.WriteLine($"Your word: {word} is worth {totalScore}");
-            Console.WriteLine("Please enter your word.  If you with to exit the app, type 'STOP'.");
+            Console.WriteLine($"Your score for \"{userWord}\": {totalScore}");
         }
 
-        //was InitialPrompt()
-        public static void StartProgram()
+
+
+//INITIAL-PROMPT
+        public static void InitialPrompt()
         {
             Console.WriteLine($"How do you wish to score your scrabble words?" +
-                "\n 1: Scrabble - the traditional score method" +
-                "\n 2: Simple Score - each letter is worth 1 point " +
-                "\n 3: Bonus Vowels - vowels are worth 3 points, consonants 1 point each");
+            "\n\t1: Scrabble - the traditional score method" +
+            "\n\t2: Simple Score - each letter is worth 1 point " +
+            "\n\t3: Bonus Vowels - vowels are worth 3 points, consonants 1 point each" +
+            "\n\n Enter 1, 2, or 3:\n");
 
+        }
+        
+        
+
+//SCORING-ALGORITHMS
+        public static void ScoringAlgorithms(int option, string lowerWord, string userWord)
+        {
+             if (option == 2)
+            {
+                SimpleScorer(lowerWord, userWord);   
+            }
+
+            else if (option == 3)
+            {
+                BonusVowels(lowerWord, userWord);
+            }
+            else
+            {
+                ScrabbleScorer(lowerWord, userWord);
+            }
+        }
+
+
+//RUN PROGRAM
+        public static void RunProgram()
+        {
+            InitialPrompt();
             string inputOption = Console.ReadLine();
             int inputPoints = int.Parse(inputOption);
 
-            Console.WriteLine("Please type in your word followed by enter.  If you wish to end your session type: STOP");
-
-            SelectOption(inputPoints);
-        }
-
-
-        public static void SelectOption(int option)
-        {
             bool done = false;
-
             while (done == false)
             {
+                Console.WriteLine("Enter a word to be scored, or 'Stop' to quit:");
+
                 string userWord = Console.ReadLine();
                 string lowerWord = userWord.ToLower();
 
                 if (lowerWord == "stop")
                 {
-                    Console.WriteLine("Thank you for playing"); //for my testing
                     done = true;
                 }
-                else
-                {
-
-                    if (option == 1)
-                    {
-                        ScrabbleScorer(lowerWord);
-                    }
-
-                    else if (option == 2)
-                    {
-                        SimpleScorer(lowerWord);
-                    }
-
-                    else if (option == 3)
-                    {
-                        BonusVowels(lowerWord);
-                    }
-
-                }
-
+                ScoringAlgorithms(inputPoints, lowerWord, userWord);
             }
         }
 
 
-        //public static void RunProgram()
-        //{
-        //    InitialPrompt();
-        //}
-
-
-
+// ----------  MAIN  -------------
         static void Main(string[] args)
         {
-            Dictionary<char, int> testDictionary = Transform();
-
-            foreach(KeyValuePair<char,int> test in testDictionary)
-            {
-                Console.WriteLine($"{test.Key} + {test.Value}");
-                    }
-
-            Console.WriteLine(testDictionary['a']);
-            Console.WriteLine(testDictionary['j']);
-
-            StartProgram();
-          // RunProgram();
-        } 
+            RunProgram();
+        }
     } 
 }

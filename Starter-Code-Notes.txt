@@ -1,0 +1,44 @@
+﻿provide:
+
+    * old dictionary
+
+    * placement prompts for their methods
+        * provide method signature for SimpleScore
+
+so far:
+
+(as I walk through the directions)
+
+----------------
+
+OLD-DICTIONARY
+{
+    { here we go}
+};
+
+//code your TRANSFORM method here
+
+
+//code your SCRABBLE SCORE method here
+
+//code your SIMPLE SCORE method here
+    public static void SimpleScore(string word)
+        {
+            //code the method
+        }
+
+//code your BONUS VOWELS method here
+
+
+//code your SCORING ALGORITHMS method here
+
+//code your RUN PROGRAM method here
+
+
+
+
+------------ Main -------------
+//Call your RUN PROGRAM here
+
+
+//Test Your Methods here

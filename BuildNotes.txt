@@ -1,4 +1,23 @@
-﻿5/27 ------
+﻿6/2 ------
+created starter-code-notes to help me create directions
+    * adding to comments as i write directions
+
+redesigned the ScoringAlgorithms method.
+    else ==> ScrabbleScorer as the only other option
+(was initial if(x == 1))
+
+areas of initial concern:
+    C) Scoring Algorithms --> want original word and the lower word, BUT we haven't made the RunProgram that will handle this yet
+        * idea: update this when building the RunProgram method???
+
+6/1 ------
+added notes to current build to help with creating student instructions.
+    * areas to watch:  explaining how to test Transform, translating scoringAlorithms JS ==> C#
+
+
+
+
+5/27 ------
 
 updated language so method names match JS function names
 
