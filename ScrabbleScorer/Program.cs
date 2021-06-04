@@ -23,13 +23,13 @@ namespace ScrabbleScorer
         {
             Dictionary<char, int> newDict = new Dictionary<char, int>();
 
-            foreach (KeyValuePair<int, string> oSK in oldPointStructure)
+            foreach (KeyValuePair<int, string> oPS in oldPointStructure)
             {
-                string[] strChar = oSK.Value.Split(", ");  
+                string[] strChar = oPS.Value.Split(", ");  
                 foreach (string str in strChar)
                 {
                     char ch = Convert.ToChar(str.ToLower());
-                    newDict.Add(ch, oSK.Key);
+                    newDict.Add(ch, oPS.Key);
                 }
             }
             return newDict;
@@ -41,7 +41,7 @@ namespace ScrabbleScorer
     //1
         public static void ScrabbleScorer(string word, string userWord)
         {
-            Dictionary<char, int> newPointStructure = Transform();  //using my new dictionary thanks to this method
+            Dictionary<char, int> newPointStructure = Transform();  
 
             int totalScore = 0;  
 
@@ -147,6 +147,7 @@ namespace ScrabbleScorer
 // ----------  MAIN  -------------
         static void Main(string[] args)
         {
+
             RunProgram();
         }
     } 
