@@ -1,4 +1,7 @@
-﻿6/2 ------
+﻿6/4 -----
+reading through - added notes
+
+6/2 ------
 created starter-code-notes to help me create directions
     * adding to comments as i write directions
 

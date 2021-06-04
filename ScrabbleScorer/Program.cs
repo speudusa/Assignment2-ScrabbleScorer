@@ -7,7 +7,7 @@ namespace ScrabbleScorer
     {
         public static Dictionary<int, string> oldPointStructure = new Dictionary<int, string>()
         {
-            {1, "A, E, I, O, U, L, N, R, S, T"},
+            {1, "A, E, I, O, U, L, N, R, S, T"}, 
             {2, "D, G"},
             {3, "B, C, M, P" },
             {4, "F, H, V, W, Y" },
@@ -19,6 +19,8 @@ namespace ScrabbleScorer
 
 
 //TRANSFORM
+            //this method will *return* a dictionary oriented the way we want (char:int)
+                //we break the string down, remove the ", " set each char to lower and fill the new dictionary object
         public static Dictionary<char, int> Transform()
         {
             Dictionary<char, int> newDict = new Dictionary<char, int>();
@@ -28,7 +30,7 @@ namespace ScrabbleScorer
                 string[] strChar = oPS.Value.Split(", ");  
                 foreach (string str in strChar)
                 {
-                    char ch = Convert.ToChar(str.ToLower());
+                    char ch = Convert.ToChar(str.ToLower());        //will have to convert to char && lowercase
                     newDict.Add(ch, oPS.Key);
                 }
             }
@@ -39,6 +41,11 @@ namespace ScrabbleScorer
 
 //SCORE OPTIONS
     //1
+
+            //the only score method using the dictionary
+                //create empty dict that will hold what is returned by Transform
+                //break down our word (this one will be .ToLower) and create a total score
+                //print the results statement using the original word 
         public static void ScrabbleScorer(string word, string userWord)
         {
             Dictionary<char, int> newPointStructure = Transform();  
@@ -56,10 +63,12 @@ namespace ScrabbleScorer
                 }
             }
 
-            Console.WriteLine($"Your score for \"{userWord}\": {totalScore}");
+            Console.WriteLine($"Your score for \"{userWord}\": {totalScore}");  //this is the book example
         }
 
     //2
+            //points based on overall length <-- most simple
+            //could loop through this if desired.
         public static void SimpleScorer(string word, string userWord)
         {
             int totalScore = word.Length;
@@ -74,7 +83,7 @@ namespace ScrabbleScorer
 
             foreach (char ch in word)
             {
-                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') //if student wants to include 'y' that's fine
                 {
                     totalScore += 3;
                 }
